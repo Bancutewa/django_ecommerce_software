@@ -1,0 +1,83 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+{% block main_content %}
+<style>
+    main {
+        display: flex;
+        align-items: center;
+        justify-content: center; 
+    }
+    .sign-up {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column; /* Để nội dung được căn giữa theo chiều dọc */
+        width: 400px;
+        height: 700px;
+        background-color: #f2f2f2; /* Màu nền có thể thay đổi */
+        border: 1px solid #ccc; /* Viền có thể thay đổi */
+        padding: 20px; /* Khoảng cách giữa nội dung và viền */
+        box-sizing: border-box; /* Kích thước tính cả padding và border */
+    }
+    /* CSS cho button */
+    input[type="submit"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4CAF50; /* Màu nền */
+    color: white; /* Màu chữ */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    input[type="submit"] {
+    background-color: #45a049; /* Màu nền hover */
+    }
+
+    </style>
+  <main>  
+    <div class="sign-up">
+        <form action="." method="POST" class="signup-form" data-netlify="true">
+            {% csrf_token %}
+              <div class="form-btn">
+             <label for="{{ form.first_name.id_for_label }}">Tên:</label>
+             {{ form.first_name }}
+             <span class="error text-danger">{{ form.first_name.errors }}</span>
+            </div>
+              <div class="form-btn">
+             <label for="{{ form.last_name.id_for_label }}">Họ:</label>
+             {{ form.last_name }}
+             <span class="error text-danger">{{ form.last_name.errors }}</span>
+            </div>
+            <div class="form-btn">
+             <label for="{{ form.username.id_for_label }}">Tài khoản:</label>
+             {{ form.username }}
+             <span class="error text-danger">{{ form.username.errors }}</span>
+            </div>
+
+            
+            <div class="form-btn">
+                  <label for="{{ form.email.id_for_label }}">Email:</label>
+             {{ form.email }}
+             <span class="error text-danger">{{ form.email.errors }}</span>
+            </div>
+
+            <div class="form-btn">
+                <label for="{{ form.password1.id_for_label }}">Mật khẩu:</label>
+                {{ form.password1 }}
+                <span class="error text-danger">{{ form.password1.errors }}</span>
+            </div>
+            
+            <div class="form-btn">
+                <label for="{{ form.password2.id_for_label }}">Nhập lại mật khẩu:</label>
+                {{ form.password2 }}
+                <span class="error text-danger">{{ form.password2.errors }}</span>
+            </div>
+
+            <input id="submit-btn" type="submit" value="Đăng Ký" id="btn">
+
+        </form>
+        </section>
+    </main>
+{% endblock main_content %}
