@@ -9299,6 +9299,7 @@ div[class*=col]:last-child .counter-item-2::after {
 }
 
 .product-thumb {
+  overflow: hidden;
   padding: 80px 60px 40px;
   overflow: hidden;
   max-width: 370px;
@@ -9311,6 +9312,8 @@ div[class*=col]:last-child .counter-item-2::after {
 }
 .product-thumb img {
   width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 .product-action-item {

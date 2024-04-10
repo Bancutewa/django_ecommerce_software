@@ -9311,6 +9311,8 @@ div[class*=col]:last-child .counter-item-2::after {
 }
 .product-thumb img {
   width: 100%;
+  height: 100%;
+  object-fit: contain ;
 }
 
 .product-action-item {

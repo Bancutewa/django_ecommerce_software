@@ -11,38 +11,45 @@ from django.db.models import Q
 def Home(request):
     if request.user.is_authenticated:
         customer = request.user
-        order, created = Order.objects.get_or_create(customer = customer, complete = False)
-        items = order.orderitem_set.all()
-        cartItems = order.get_cart_items
         user_login = "show"
         user_not_login = "hidden"
     else:
-        order = {"get_cart_items":0,"get_cart_total":0 }
-        cartItems = order['get_cart_items']
         user_login = "hidden"
         user_not_login = "show"
-        
     products = Product.objects.all()
-    context = {'products' : products, 'cartItems':cartItems , 'user_login':user_login, 'user_not_login':user_not_login }
+    context = {'products' : products, 'user_login':user_login, 'user_not_login':user_not_login }
     return render(request,"myapp/index.html",context)
 def ProductList(request):
-    return render(request,"myapp/product.html")
+    products = Product.objects.all()
+    context = {'products' : products}
+    return render(request,"myapp/product.html",context)
 def ProductDetails(request):
-    return render(request,"myapp/product-details.html")
-def Cart(request):
-    return render(request,"myapp/cart.html")
-def Register(request):
     if request.user.is_authenticated:
         customer = request.user
-        order, created = Order.objects.get_or_create(customer = customer, complete = False)
-        items = order.orderitem_set.all()
-        cartItems = order.get_cart_items
         user_login = "show"
         user_not_login = "hidden"
     else:
-        items= []
-        order = {"get_cart_items":0,"get_cart_total":0 }
-        cartItems = order['get_cart_items']
+        user_login = "hidden"
+        user_not_login = "show"
+    id = request.GET.get('id', '')
+    products = Product.objects.filter(id = id)
+    context = {'products' : products, 'user_login':user_login, 'user_not_login':user_not_login }
+    return render(request,"myapp/productdetails.html", context)
+def Cart(request):
+    if request.user.is_authenticated:
+        customer = request.user
+        user_login = "show"
+        user_not_login = "hidden"
+    else:
+        user_login = "hidden"
+        user_not_login = "show"
+    context = {'user_login':user_login, 'user_not_login':user_not_login }
+    return render(request,"myapp/cart.html",context)
+def Register(request):
+    if request.user.is_authenticated:
+        user_login = "show"
+        user_not_login = "hidden"
+    else:
         user_login = "hidden"
         user_not_login = "show"
     form = RegistrationForm()
@@ -77,4 +84,13 @@ def LogoutPage(request):
     logout(request)
     return redirect('home')
 def Contact(request):
-    return render(request,"myapp/contact.html")
+    if request.user.is_authenticated:
+        customer = request.user
+        user_login = "show"
+        user_not_login = "hidden"
+    else:
+        user_login = "hidden"
+        user_not_login = "show"
+    context = {'user_login':user_login, 'user_not_login':user_not_login }
+
+    return render(request,"myapp/contact.html",context)
