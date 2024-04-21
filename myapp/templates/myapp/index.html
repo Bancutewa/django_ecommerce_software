@@ -1108,7 +1108,8 @@
                         alt=""
                     /></a>
                     <div class="product-action-item">
-                      <button type="button" class="product-action-btn">
+                      <button type="button" class="product-action-btn updated-cart"   data-product="{{product.id}}"
+                      data-action="add">
                         <svg
                           width="20"
                           height="22"
@@ -1124,11 +1125,11 @@
                             stroke-linejoin="round"
                           />
                         </svg>
-                        <span class="product-tooltip">Add to Cart</span>
+                        <span class="product-tooltip ">Add to Cart</span>
                       </button>
                       <button
                         type="button"
-                        class="product-action-btn"
+                        class="product-action-btn "
                         data-bs-toggle="modal"
                         data-bs-target="#producQuickViewModal"
                       >

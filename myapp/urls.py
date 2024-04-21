@@ -11,4 +11,6 @@ urlpatterns = [
     path("login/", views.LoginPage, name="login"),
     path("logout/", views.LogoutPage, name="logout"),
     path("contact/", views.Contact, name="contact"),
+    path("update_item/", views.updateItem, name="update_item")
+    
 ]

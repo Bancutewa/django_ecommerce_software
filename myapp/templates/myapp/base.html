@@ -377,7 +377,7 @@
                                        d="M14.0625 10.6C14.0625 12.5883 12.4676 14.2 10.5 14.2C8.53243 14.2 6.9375 12.5883 6.9375 10.6M1 5.8H20M1 5.8V13C1 20.6402 2.33946 22 10.5 22C18.6605 22 20 20.6402 20 13V5.8M1 5.8L2.71856 2.32668C3.12087 1.5136 3.94324 1 4.84283 1H16.1571C17.0568 1 17.8791 1.5136 18.2814 2.32668L20 5.8"
                                        stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                  </svg>
-                                 <span class="header-action-badge bg-furniture">12</span>
+                                 <span class="header-action-badge bg-furniture">{{order.get_cart_items}}</span>
                               </a>
                            </div>
                         </div>
@@ -551,6 +551,27 @@
    <script src="{% static "assets/js/beforeafter.jquery-1.0.0.min.js" %} "></script>
    <script src="{% static "assets/js/main.js" %} "></script>
    <script src="{% static "assets/js/cart.js" %} "></script>
+   <script type='text/javascript'>
+        
+      const user = '{{request.user}}'
+      function getCookie(name) {
+          let cookieValue = null;
+          if (document.cookie && document.cookie !== '') {
+              const cookies = document.cookie.split(';');
+              for (let i = 0; i < cookies.length; i++) {
+                  const cookie = cookies[i].trim();
+                  // Does this cookie string begin with the name we want?
+                  if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                      cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                      break;
+                  }
+              }
+          }
+          return cookieValue;
+      }
+      
+      const csrftoken = getCookie('csrftoken');
+  </script>
 </body>
 
 
